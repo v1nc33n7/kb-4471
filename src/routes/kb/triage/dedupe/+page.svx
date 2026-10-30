@@ -16,16 +16,16 @@ and merge every duplicate into it, so engineering sees one thread with a count.
 
 ## The rule
 
-A report is a duplicate when its **subject line matches** the subject of an open ticket
-([decision 0001](/kb/decisions/0001-dedupe-by-subject)):
+A report is a duplicate when it **shares a cause** with an open ticket
+([decision 0002](/kb/decisions/0002-dedupe-by-cause), which replaces
+[0001](/kb/decisions/0001-dedupe-by-subject)):
 
-1. lowercase the subject and strip punctuation;
-2. look for an open ticket with the same subject;
-3. found one: merge the report into it. None: open a new ticket.
+1. look up the reporter's tenant: its locale and booking form;
+2. work out the cause from them, ignoring the subject and intake's tag;
+3. found an open ticket with that cause: merge. None: open a new ticket.
 
 <Callout>
-Matching on subject is fast and needs no reading. During an incident that matters more than
-anything else.
+Matching on subject hid two causes inside #4471. Match on cause.
 </Callout>
 
 ## Try it
@@ -34,4 +34,4 @@ anything else.
 
 ## When you are unsure
 
-Merge. Splitting a ticket later is cheaper than two engineers chasing the same bug.
+Look up the tenant. A wrong merge hides a second bug behind a fix that does not cover it.
