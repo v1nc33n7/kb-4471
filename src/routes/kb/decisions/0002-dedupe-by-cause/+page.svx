@@ -4,12 +4,12 @@ title: '0002 · Duplicates share a cause'
 owner: v1nc33n7
 status: accepted
 reviewed: 2026-10-30
-signature: v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDAyOTYsImV4cCI6MTc5MzQ4NjY5Nn0.iNfi1KMdB7DrgD-djT0AnhsIsjLAXKEpWagPz3fGe40
+signature: v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDE5ODEsImV4cCI6MTc5MzQ4ODM4MX0.40_x3AtieEDtl3ft-XgGgiJeg0klgoR297d1JdbxjaE
 ---
 
 <script>
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
-  const signature = 'v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDAyOTYsImV4cCI6MTc5MzQ4NjY5Nn0.iNfi1KMdB7DrgD-djT0AnhsIsjLAXKEpWagPz3fGe40';
+  const signature = 'v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDE5ODEsImV4cCI6MTc5MzQ4ODM4MX0.40_x3AtieEDtl3ft-XgGgiJeg0klgoR297d1JdbxjaE';
 </script>
 
 **Date:** 30 October 2026 · **Replaces:** [0001](/kb/decisions/0001-dedupe-by-subject) · **Fixes:** #1, #2

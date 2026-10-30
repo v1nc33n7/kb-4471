@@ -2,9 +2,9 @@
 layout: runbook
 title: '#4471 is three problems, not one'
 owner: support desk
-status: proposed
+status: accepted
 reviewed: 2026-10-30
-signature: v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDAyOTYsImV4cCI6MTc5MzQ4NjY5Nn0.iNfi1KMdB7DrgD-djT0AnhsIsjLAXKEpWagPz3fGe40
+signature: v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDE5ODEsImV4cCI6MTc5MzQ4ODM4MX0.40_x3AtieEDtl3ft-XgGgiJeg0klgoR297d1JdbxjaE
 ---
 
 <script>
@@ -15,7 +15,7 @@ signature: v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYX
   import notes from '#lib/data/desk-notes.json';
   import { groupByCause, readAs, uniqueById } from '#lib/kb/causes';
   import { tenantOf } from '#lib/kb/locales';
-  const signature = 'v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDAyOTYsImV4cCI6MTc5MzQ4NjY5Nn0.iNfi1KMdB7DrgD-djT0AnhsIsjLAXKEpWagPz3fGe40';
+  const signature = 'v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDE5ODEsImV4cCI6MTc5MzQ4ODM4MX0.40_x3AtieEDtl3ft-XgGgiJeg0klgoR297d1JdbxjaE';
 
   const merged = uniqueById(reports).filter((r) => r.mergedInto === 4471);
   const groups = groupByCause(merged, tenantOf);
@@ -56,6 +56,12 @@ Not one issue. One fix queued covers only the largest of three.
 The desk now merges on cause, not subject: [decision 0002](/kb/decisions/0002-dedupe-by-cause)
 replaces 0001, and the [triage page](/kb/triage/dedupe) follows it. Tickets: #1 (`parser`, {parser.reports.length}),
 #2 (`hint`, {hint.reports.length}) and #3 (one-day move, {oneDay}), closed by pull requests #4 and #5.
+
+## Outcome
+
+Engineering closed #4471 on 5 October. `parser`: **fixed**, "fix(dates): parse dd/mm for eu locales".
+`hint`: **won't fix**, the booking-v3 form is retired. The one-day reports have no ticket of their
+own in the desk's view: they sit inside `parser`.
 
 ## Lessons
 
