@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>0002 · Duplicates share a cause · support kb</title></head>
+<body><div class="kb">
+<header><a class="crumb" href="/kb">support desk · kb</a>
+<h1>0002 · Duplicates share a cause</h1>
+<p class="meta"><span>owner <b>v1nc33n7</b></span> <span class="status accepted">accepted</span> <span>reviewed 2026-10-30</span></p></header>
+<main>
+<p><b>Date:</b> 30 October 2026 · <b>Replaces:</b> <a href="/kb/decisions/0001-dedupe-by-subject">0001</a> · <b>Fixes:</b> #1, #2</p>
+<h2>Context</h2>
+<p>Merging on subject alone put every report into #4471. They hold two causes, and intake tags the cause wrong for some of them (counts: <a href="/kb/incidents/4471-split">the #4471 split</a>).</p>
+<h2>Decision</h2>
+<p>Two reports are the same issue when they share a <strong>cause</strong>, read from the reporter's tenant (locale and booking form), not from the subject line and not from intake's tag (<code>causeOf</code> in <code>src/lib/kb/causes.ts</code>). Reports with no tenant on file are not merged: read them.</p>
+<p>A report the desk reads differently from its cause (a one-day move) stays in its cause's ticket and is footnoted there.</p>
+<h2>Consequences</h2>
+<ul><li>Slower than subject matching: someone looks up the tenant.</li><li>One ticket per cause, each with its own count and its own fix.</li><li>Count by report id: the ticket export repeats reports across pages.</li></ul>
+<p class="stamp">desk ref <b>DR-NNQA-DQMT</b></p>
+</main>
+<footer>Pages are written by people. Tables and charts are built from data at render time.</footer>
+</div></body></html>
