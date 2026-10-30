@@ -1,0 +1,29 @@
+---
+layout: runbook
+title: '0002 · Duplicates share a cause'
+owner: support desk
+status: accepted
+reviewed: 2026-10-30
+---
+
+**Date:** 30 October 2026 · **Replaces:** [0001](/kb/decisions/0001-dedupe-by-subject) · **Fixes:** #1, #2
+
+## Context
+
+Merging on subject alone put 412 reports into #4471. They hold two causes (`parser` 379,
+`hint` 33), and intake tags the cause wrong for 38 of them. One fix was queued; it covers one cause.
+
+## Decision
+
+Two reports are the same issue when they share a **cause**, read from the reporter's tenant
+(locale and booking form), not from the subject line and not from intake's tag
+(`causeOf` in `src/lib/kb/causes.ts`). Reports with no tenant on file are not merged: read them.
+
+A report the desk reads differently from its cause (a one-day move) stays in its cause's ticket
+and is footnoted there.
+
+## Consequences
+
+- Slower than subject matching: someone looks up the tenant.
+- One ticket per cause, each with its own count and its own fix.
+- Count by report id: the ticket export repeats reports across pages.
