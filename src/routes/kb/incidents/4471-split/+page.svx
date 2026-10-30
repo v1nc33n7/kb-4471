@@ -25,17 +25,17 @@ Not one issue. One fix queued covers only the largest of three.
 
 | Problem | Reports | What it is |
 |---|---|---|
-| `parser` | 374 | The shared parser reads every date month first. Day-first tenants get flipped dates. Affects all 11 tenants. |
+| `parser` | 379 | The shared parser reads every date month first. Day-first tenants get flipped dates. Affects all 11 tenants. |
 | `hint` | 33 | `booking-v3` prints `MM/DD/YYYY` under the date field, so day-first people type month first. A form bug, not a parser bug. Affects alder.physio, copper.studio, pale.harbour. |
 | one-day move | 5 | The date is off by exactly one day, not by a month flip (R-41202, R-41209, R-41236, R-41344, R-41620). Looks like a time zone problem. Filed under `parser` by tenant. |
 
-374 + 33 + 5 = 412.
+379 + 33 = 412. The 5 one-day reports are inside the 379, filed under `parser` by tenant; they also get their own ticket.
 
 ## What the counts rest on
 
 <CauseTable ticket={4471} />
 
-- The table puts the 5 one-day reports under `parser`; this page counts them on their own.
+- The table puts the 5 one-day reports under `parser`, as the desk counts them.
 - The export repeats 15 reports across overlapping pages. One id is one report.
 - Intake tags are wrong for 38 reports: 23 tagged `hint` are `parser`, 15 tagged `parser` are `hint`.
   Only the tenant's locale and form say which.
