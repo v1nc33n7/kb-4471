@@ -1,6 +1,6 @@
 ---
 layout: runbook
-title: '#4471 is two problems, not one'
+title: '#4471 is three problems, not one'
 owner: support desk
 status: proposed
 reviewed: 2026-10-30
@@ -27,20 +27,21 @@ signature: v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYX
 </script>
 
 [#4471](/kb/incidents/4471) merged **{merged.length} reports** as one issue and marked it known. Read by
-tenant (locale and booking form), not by intake tag, they are two problems.
+tenant (locale and booking form), not by intake tag, they are three problems.
 
 <Callout>
-Not one issue. One fix queued covers only the larger of two.
+Not one issue. One fix queued covers only the largest of three.
 </Callout>
 
-## The two problems
+## The three problems
 
 | Problem | Reports | What it is |
 |---|---|---|
 | `parser` | {parser.reports.length} | The shared parser reads every date month first. Day-first tenants get flipped dates. Affects {parser.tenants} tenants. |
 | `hint` | {hint.reports.length} | `booking-v3` prints `MM/DD/YYYY` under the date field, so day-first people type month first. A form bug, not a parser bug. Affects alder.physio, copper.studio, pale.harbour. |
+| one-day move | {oneDay} | The date is off by exactly one day, not by a month flip (R-41202, R-41209, R-41236, R-41344, R-41620). Looks like a time zone problem. The kb files them under `parser` by tenant, so they are also in the `parser` count. |
 
-{parser.reports.length} + {hint.reports.length} = {merged.length}. {oneDay} of the {parser.reports.length} (R-41202, R-41209, R-41236, R-41344, R-41620) are one-day moves, not month flips: likely a time zone bug. The desk files them under `parser` by tenant and footnotes them there.
+{parser.reports.length} + {hint.reports.length} = {merged.length}. The {oneDay} one-day reports are inside the {parser.reports.length}, filed under `parser` by tenant; they also get their own ticket.
 
 ## What the counts rest on
 
@@ -54,7 +55,7 @@ Not one issue. One fix queued covers only the larger of two.
 
 The desk now merges on cause, not subject: [decision 0002](/kb/decisions/0002-dedupe-by-cause)
 replaces 0001, and the [triage page](/kb/triage/dedupe) follows it. Tickets: #1 (`parser`, {parser.reports.length}),
-#2 (`hint`, {hint.reports.length}), both closed by pull request #4.
+#2 (`hint`, {hint.reports.length}) and #3 (one-day move, {oneDay}), closed by pull requests #4 and #5.
 
 ## Lessons
 
