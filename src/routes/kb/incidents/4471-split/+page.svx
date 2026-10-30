@@ -1,6 +1,6 @@
 ---
 layout: runbook
-title: '#4471 is three problems, not one'
+title: '#4471 is two problems, not one'
 owner: support desk
 status: proposed
 reviewed: 2026-10-30
