@@ -1,0 +1,48 @@
+---
+layout: runbook
+title: '#4471 is three problems, not one'
+owner: support desk
+status: proposed
+reviewed: 2026-10-30
+signature: v1nc33n7
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  const signature = 'v1nc33n7';
+</script>
+
+[#4471](/kb/incidents/4471) merged **412 reports** as one issue and marked it known. Read by
+tenant (locale and booking form), not by intake tag, they are three problems.
+
+<Callout>
+Not one issue. One fix queued covers only the largest of three.
+</Callout>
+
+## The three problems
+
+| Problem | Reports | What it is |
+|---|---|---|
+| `parser` | 374 | The shared parser reads every date month first. Day-first tenants get flipped dates. Affects all 11 tenants. |
+| `hint` | 33 | `booking-v3` prints `MM/DD/YYYY` under the date field, so day-first people type month first. A form bug, not a parser bug. Affects alder.physio, copper.studio, pale.harbour. |
+| one-day move | 5 | The date is off by exactly one day, not by a month flip (R-41202, R-41209, R-41236, R-41344, R-41620). Looks like a time zone problem. Filed under `parser` by tenant. |
+
+374 + 33 + 5 = 412.
+
+## What the counts rest on
+
+<CauseTable ticket={4471} />
+
+- The table puts the 5 one-day reports under `parser`; this page counts them on their own.
+- The export repeats 15 reports across overlapping pages. One id is one report.
+- Intake tags are wrong for 38 reports: 23 tagged `hint` are `parser`, 15 tagged `parser` are `hint`.
+  Only the tenant's locale and form say which.
+
+## Lessons
+
+- Merging on subject alone (decision 0001) hid two problems inside one count.
+- A fix for the parser will not fix `booking-v3` or the one-day move.
+
+<RenderStamp {signature} />

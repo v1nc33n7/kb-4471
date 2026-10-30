@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>#4471 is three problems, not one</title></head>
+<body><main>
+<h1>#4471 is three problems, not one</h1>
+<p>owner: support desk · status: proposed · reviewed: 2026-10-30</p>
+<p><a href="/kb/incidents/4471">#4471</a> merged <strong>412 reports</strong> as one issue and marked it known. Read by tenant (locale and booking form), not by intake tag, they are three problems.</p>
+<aside>Not one issue. One fix queued covers only the largest of three.</aside>
+<h2>The three problems</h2>
+<table border="1"><thead><tr><th>Problem</th><th>Reports</th><th>What it is</th></tr></thead><tbody>
+<tr><td><code>parser</code></td><td>374</td><td>The shared parser reads every date month first. Day-first tenants get flipped dates. Affects all 11 tenants.</td></tr>
+<tr><td><code>hint</code></td><td>33</td><td><code>booking-v3</code> prints <code>MM/DD/YYYY</code> under the date field, so day-first people type month first. A form bug, not a parser bug. Affects alder.physio, copper.studio, pale.harbour.</td></tr>
+<tr><td>one-day move</td><td>5</td><td>The date is off by exactly one day, not by a month flip (R-41202, R-41209, R-41236, R-41344, R-41620). Looks like a time zone problem. Filed under <code>parser</code> by tenant.</td></tr>
+</tbody></table>
+<p>374 + 33 + 5 = 412.</p>
+<h2>What the counts rest on</h2>
+<table border="1"><thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th></tr></thead><tbody>
+<tr><td><code>parser</code></td><td>379 (374 + 5 one-day)</td><td>parser ×356 · hint ×23</td><td>11</td></tr>
+<tr><td><code>hint</code></td><td>33</td><td>hint ×18 · parser ×15</td><td>3</td></tr>
+</tbody></table>
+<ul>
+<li>The table puts the 5 one-day reports under <code>parser</code>; this page counts them on their own.</li>
+<li>The export repeats 15 reports across overlapping pages. One id is one report.</li>
+<li>Intake tags are wrong for 38 reports: 23 tagged <code>hint</code> are <code>parser</code>, 15 tagged <code>parser</code> are <code>hint</code>. Only the tenant's locale and form say which.</li>
+</ul>
+<h2>Lessons</h2>
+<ul><li>Merging on subject alone (decision 0001) hid two problems inside one count.</li><li>A fix for the parser will not fix <code>booking-v3</code> or the one-day move.</li></ul>
+<p class="stamp">desk ref <b>DR-1FXY-R1NT</b></p>
+</main></body></html>
