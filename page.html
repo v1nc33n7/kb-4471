@@ -20,6 +20,8 @@
 <li>The export repeats 15 reports across overlapping pages. One id is one report.</li>
 <li>Intake tags are wrong for 38 reports: 23 tagged <code>hint</code> are <code>parser</code>, 15 tagged <code>parser</code> are <code>hint</code>. Only the tenant's locale and form say which.</li>
 </ul>
+<h2>What changed</h2>
+<p>The desk now merges on cause, not subject: <a href="/kb/decisions/0002-dedupe-by-cause">decision 0002</a> replaces 0001, and the <a href="/kb/triage/dedupe">triage page</a> follows it. Tickets: #1 (parser, 379), #2 (hint, 33), both closed by pull request #4.</p>
 <h2>Lessons</h2>
 <ul><li>Merging on subject alone (decision 0001) hid a second problem inside one count.</li><li>A fix for the parser will not fix <code>booking-v3</code> .</li></ul>
 <p class="stamp">desk ref <b>DR-NNQA-DQMT</b></p>

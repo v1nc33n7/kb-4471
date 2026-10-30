@@ -38,6 +38,12 @@ Not one issue. One fix queued covers only the larger of two.
 - Intake tags are wrong for 38 reports: 23 tagged `hint` are `parser`, 15 tagged `parser` are `hint`.
   Only the tenant's locale and form say which.
 
+## What changed
+
+The desk now merges on cause, not subject: [decision 0002](/kb/decisions/0002-dedupe-by-cause)
+replaces 0001, and the [triage page](/kb/triage/dedupe) follows it. Tickets: #1 (`parser`, 379),
+#2 (`hint`, 33), both closed by pull request #4.
+
 ## Lessons
 
 - Merging on subject alone (decision 0001) hid a second problem inside one count.
