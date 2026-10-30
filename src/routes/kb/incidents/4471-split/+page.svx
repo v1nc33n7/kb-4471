@@ -11,10 +11,22 @@ signature: v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYX
   import CauseTable from '#lib/kb/CauseTable.svelte';
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  import reports from '#lib/data/reports-4471.json';
+  import notes from '#lib/data/desk-notes.json';
+  import { groupByCause, readAs, uniqueById } from '#lib/kb/causes';
+  import { tenantOf } from '#lib/kb/locales';
   const signature = 'v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDAyOTYsImV4cCI6MTc5MzQ4NjY5Nn0.iNfi1KMdB7DrgD-djT0AnhsIsjLAXKEpWagPz3fGe40';
+
+  const merged = uniqueById(reports).filter((r) => r.mergedInto === 4471);
+  const groups = groupByCause(merged, tenantOf);
+  const by = (c) => groups.find((g) => g.cause === c);
+  const parser = by('parser'), hint = by('hint');
+  const oneDay = readAs(parser, notes.oneDayMove);
+  const dupes = reports.length - merged.length;
+  const retagged = (g, tag) => g.taggedAs[tag] ?? 0;
 </script>
 
-[#4471](/kb/incidents/4471) merged **412 reports** as one issue and marked it known. Read by
+[#4471](/kb/incidents/4471) merged **{merged.length} reports** as one issue and marked it known. Read by
 tenant (locale and booking form), not by intake tag, they are two problems.
 
 <Callout>
@@ -25,24 +37,24 @@ Not one issue. One fix queued covers only the larger of two.
 
 | Problem | Reports | What it is |
 |---|---|---|
-| `parser` | 379 | The shared parser reads every date month first. Day-first tenants get flipped dates. Affects all 11 tenants. |
-| `hint` | 33 | `booking-v3` prints `MM/DD/YYYY` under the date field, so day-first people type month first. A form bug, not a parser bug. Affects alder.physio, copper.studio, pale.harbour. |
+| `parser` | {parser.reports.length} | The shared parser reads every date month first. Day-first tenants get flipped dates. Affects {parser.tenants} tenants. |
+| `hint` | {hint.reports.length} | `booking-v3` prints `MM/DD/YYYY` under the date field, so day-first people type month first. A form bug, not a parser bug. Affects alder.physio, copper.studio, pale.harbour. |
 
-379 + 33 = 412. Five of the 379 (R-41202, R-41209, R-41236, R-41344, R-41620) are one-day moves, not month flips: likely a time zone bug. The desk files them under `parser` by tenant and footnotes them there.
+{parser.reports.length} + {hint.reports.length} = {merged.length}. {oneDay} of the {parser.reports.length} (R-41202, R-41209, R-41236, R-41344, R-41620) are one-day moves, not month flips: likely a time zone bug. The desk files them under `parser` by tenant and footnotes them there.
 
 ## What the counts rest on
 
 <CauseTable ticket={4471} />
 
-- The export repeats 15 reports across overlapping pages. One id is one report.
-- Intake tags are wrong for 38 reports: 23 tagged `hint` are `parser`, 15 tagged `parser` are `hint`.
+- The export repeats {dupes} reports across overlapping pages. One id is one report.
+- Intake tags are wrong for {retagged(parser, 'hint') + retagged(hint, 'parser')} reports: {retagged(parser, 'hint')} tagged `hint` are `parser`, {retagged(hint, 'parser')} tagged `parser` are `hint`.
   Only the tenant's locale and form say which.
 
 ## What changed
 
 The desk now merges on cause, not subject: [decision 0002](/kb/decisions/0002-dedupe-by-cause)
-replaces 0001, and the [triage page](/kb/triage/dedupe) follows it. Tickets: #1 (`parser`, 379),
-#2 (`hint`, 33), both closed by pull request #4.
+replaces 0001, and the [triage page](/kb/triage/dedupe) follows it. Tickets: #1 (`parser`, {parser.reports.length}),
+#2 (`hint`, {hint.reports.length}), both closed by pull request #4.
 
 ## Lessons
 

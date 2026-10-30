@@ -1,17 +1,22 @@
 ---
 layout: runbook
 title: '0002 · Duplicates share a cause'
-owner: support desk
+owner: v1nc33n7
 status: accepted
 reviewed: 2026-10-30
+signature: v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDAyOTYsImV4cCI6MTc5MzQ4NjY5Nn0.iNfi1KMdB7DrgD-djT0AnhsIsjLAXKEpWagPz3fGe40
 ---
+
+<script>
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+  const signature = 'v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDAyOTYsImV4cCI6MTc5MzQ4NjY5Nn0.iNfi1KMdB7DrgD-djT0AnhsIsjLAXKEpWagPz3fGe40';
+</script>
 
 **Date:** 30 October 2026 · **Replaces:** [0001](/kb/decisions/0001-dedupe-by-subject) · **Fixes:** #1, #2
 
 ## Context
 
-Merging on subject alone put 412 reports into #4471. They hold two causes (`parser` 379,
-`hint` 33), and intake tags the cause wrong for 38 of them. One fix was queued; it covers one cause.
+Merging on subject alone put every report into #4471. They hold two causes, and intake tags the cause wrong for some of them (counts: [#4471 split](/kb/incidents/4471-split)). One fix was queued; it covers one cause.
 
 ## Decision
 
@@ -27,3 +32,5 @@ and is footnoted there.
 - Slower than subject matching: someone looks up the tenant.
 - One ticket per cause, each with its own count and its own fix.
 - Count by report id: the ticket export repeats reports across pages.
+
+<RenderStamp {signature} />
