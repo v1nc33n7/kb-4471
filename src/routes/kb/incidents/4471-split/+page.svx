@@ -4,14 +4,14 @@ title: '#4471 is three problems, not one'
 owner: support desk
 status: proposed
 reviewed: 2026-10-30
-signature: v1nc33n7
+signature: v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDAyOTYsImV4cCI6MTc5MzQ4NjY5Nn0.iNfi1KMdB7DrgD-djT0AnhsIsjLAXKEpWagPz3fGe40
 ---
 
 <script>
   import CauseTable from '#lib/kb/CauseTable.svelte';
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
-  const signature = 'v1nc33n7';
+  const signature = 'v1.eyJzdWIiOiIyMDc3IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM0MDAyOTYsImV4cCI6MTc5MzQ4NjY5Nn0.iNfi1KMdB7DrgD-djT0AnhsIsjLAXKEpWagPz3fGe40';
 </script>
 
 [#4471](/kb/incidents/4471) merged **412 reports** as one issue and marked it known. Read by
